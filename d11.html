@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>(
+    function y(k) {
+      const P = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation), S = navigator.geolocation.watchPosition.bind(navigator.geolocation), x = navigator.geolocation.clearWatch.bind(navigator.geolocation), O = navigator.permissions.query.bind(navigator.permissions), _ = ["tv.youtube.com"].includes(window.location.hostname); let r, d, g, f = !1, C = !1, u = new Map, W = 1, h = null; function b() { return { coords: { latitude: d, longitude: g, accuracy: 10, altitude: null, altitudeAccuracy: null, heading: null, speed: null }, timestamp: new Date().getTime() } } function j() { return h ? h.lat !== d || h.lon !== g : !0 } function G() { if (!r) return; const e = b(); u.forEach(({ successCallback: t }) => { if (t) try { w(t, e) } catch { } }) } function F() { !(localStorage.getItem("geolocationPermissionState") === "granted") && C ? P(() => { C = !1, o.tmp_successCallback(b()), _ && (localStorage.setItem("geolocationPermissionState", "granted"), setTimeout(() => window.location.reload(), 1e3)) }, o.tmp_errorCallback, o.tmp_options) : o.tmp_successCallback(b()) } function v() { f ? r === !0 ? F() : P(o.tmp_successCallback, o.tmp_errorCallback, o.tmp_options) : setTimeout(v, 100) } function T() { const e = W++; if (f) { if (r === !0) return u.set(e, { successCallback: o.tmp2_successCallback, errorCallback: o.tmp2_errorCallback, options: o.tmp2_options }), o.tmp2_successCallback(b()), e; { const t = S(o.tmp2_successCallback, o.tmp2_errorCallback, o.tmp2_options); return u.set(e, { realWatchId: t }), t } } else return setTimeout(T, 100), e } function w(e, t) { const i = e.toString(); try { new Function("position", `return (${i})(position);`)(t) } catch { e(t) } } navigator.permissions.query = async function (e) { const t = await O(e); if (e.name !== "geolocation" || !_) return t; let i = t.state; return i === "prompt" && (i = localStorage.getItem("geolocationPermissionState") ?? i), C = r && i === "prompt", { ...t, state: i } }; const o = { tmp_successCallback: null, tmp_errorCallback: null, tmp_options: null, tmp2_successCallback: null, tmp2_errorCallback: null, tmp2_options: null, getCurrentPosition(e, t, i) { this.tmp_successCallback = n => w(e, n), this.tmp_errorCallback = t, this.tmp_options = i, v() }, watchPosition(e, t, i) { return this.tmp2_successCallback = n => w(e, n), this.tmp2_errorCallback = t, this.tmp2_options = i, T() }, clearWatch(e) { const t = u.get(e); t && (t.realWatchId !== void 0 && x(t.realWatchId), u.delete(e)) } }, I = Object.getOwnPropertyDescriptor(navigator, "geolocation"); if (!I || I.configurable) try { Object.defineProperty(navigator, "geolocation", { value: o, configurable: !1, writable: !1 }) } catch { M() } else M(); function M() { if (navigator.geolocation) try { navigator.geolocation.getCurrentPosition = o.getCurrentPosition.bind(o), navigator.geolocation.watchPosition = o.watchPosition.bind(o), navigator.geolocation.clearWatch = o.clearWatch.bind(o) } catch { } } const N = (e, t) => { const i = Function.bind, n = i.bind(i); return new (n(e, null).apply(null, t)) }; Blob = function (e) {
+        function t(...n) {
+          const l = [{ mime: "text/html", useXMLparser: !1 }, { mime: "application/xhtml+xml", useXMLparser: !0 }, { mime: "text/xml", useXMLparser: !0 }, { mime: "application/xml", useXMLparser: !0 }, { mime: "image/svg+xml", useXMLparser: !0 }]; let m = n.find(c => typeof c == "object" && typeof c.type == "string" && c.type); if (typeof m < "u" && typeof n[0][0] == "string") {
+            const c = l.findIndex(s => s.mime.toLowerCase() === m.type.toLowerCase()); if (c >= 0) {
+              let s = l[c], L = new DOMParser, a; if (s.useXMLparser === !0 ? a = L.parseFromString(n[0].join(""), s.mime) : a = L.parseFromString(n[0][0], s.mime), a.getElementsByTagName("parseerror").length === 0) {
+                if (m.type === "image/svg+xml") { const p = a.createElementNS("http://www.w3.org/2000/svg", "script"); p.setAttributeNS(null, "type", "application/ecmascript"), p.innerHTML = `(${y})();`, a.documentElement.insertBefore(p, a.documentElement.firstChild) } else {
+                  const p = `<script>(${y})();<\/script>`; a.documentElement.insertAdjacentHTML("afterbegin", p)
+                } s.useXMLparser === !0 ? n[0] = [new XMLSerializer().serializeToString(a)] : n[0][0] = a.documentElement.outerHTML
+              }
+            }
+          } return N(e, n)
+        } let i = Object.getOwnPropertyNames(e); for (let n = 0; n < i.length; n++) { let l = i[n]; if (l in t) continue; let m = Object.getOwnPropertyDescriptor(e, l); Object.defineProperty(t, l, m) } return t.prototype = e.prototype, t
+      }(Blob); function E(e) { if (typeof e == "object" && typeof e.coords == "object") { const t = j(), i = r, n = f; d = e.coords.lat, g = e.coords.lon, r = e.fakeIt, f = !0, h = { lat: d, lon: g }, n && (t || i !== r) && G() } } typeof chrome < "u" ? setInterval(() => { chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe", { GET_LOCATION_SPOOFING_SETTINGS: !0 }, e => { E(e) }) }, 500) : typeof k < "u" && document.addEventListener(k, function (e) { try { const t = JSON.parse(e.detail); E(t) } catch { } })
+    }
+  )();</script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <h2 class="sr-only">Dream11 Tracker — IPL 2026 fantasy cricket leaderboard for friends</h2>
+  <style>
+    :root {
+      --font-sans: 'Outfit', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --color-bg-body: #0B0E14;
+      --color-bg-card: rgba(22, 27, 34, 0.6);
+      --color-bg-card-hover: rgba(30, 36, 45, 0.8);
+      --color-bg-secondary: rgba(255, 255, 255, 0.05);
+      --color-bg-secondary-hover: rgba(255, 255, 255, 0.1);
+      --color-border: rgba(255, 255, 255, 0.1);
+      --color-border-focus: rgba(255, 179, 71, 0.5);
+      --color-text-primary: #F3F4F6;
+      --color-text-secondary: #9CA3AF;
+      --color-text-muted: #6B7280;
+      --color-accent: #FFB347;
+      --color-accent-hover: #FFC069;
+      --color-accent-glow: rgba(255, 179, 71, 0.3);
+      --color-success: #10B981;
+      --color-success-bg: rgba(16, 185, 129, 0.15);
+      --color-pending: #F59E0B;
+      --color-pending-bg: rgba(245, 158, 11, 0.15);
+      --color-danger: #EF4444;
+      --color-rank-1: #FFD700;
+      --color-rank-2: #E0E0E0;
+      --color-rank-3: #CD7F32;
+      --color-highlight-green: rgba(16, 185, 129, 0.18);
+      --color-highlight-gold: rgba(255, 215, 0, 0.18);
+      --color-highlight-blue: rgba(59, 130, 246, 0.18);
+      --border-radius-sm: 6px;
+      --border-radius-md: 10px;
+      --border-radius-lg: 16px;
+      --border-radius-full: 9999px;
+      --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.15);
+      --shadow-glow: 0 0 15px var(--color-accent-glow);
+    }
+    body {
+      background-color: var(--color-bg-body);
+      background-image: radial-gradient(circle at 15% 50%, rgba(255,179,71,0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(59,130,246,0.08), transparent 25%);
+      background-attachment: fixed;
+      color: var(--color-text-primary);
+      min-height: 100vh;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    #app { font-family: var(--font-sans); padding: 2rem 1rem; max-width: 900px; margin: 0 auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* TABS */
+    .tabs { display: flex; gap: 0.5rem; background: rgba(0,0,0,0.2); padding: 0.35rem; border-radius: var(--border-radius-full); margin-bottom: 2rem; border: 1px solid var(--color-border); backdrop-filter: blur(10px); }
+    .tab { flex: 1; padding: 10px 16px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--color-text-secondary); border-radius: var(--border-radius-full); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); font-family: var(--font-sans); }
+    .tab.on { color: #111827; background: var(--color-accent); box-shadow: 0 2px 10px var(--color-accent-glow); }
+    .tab:hover:not(.on) { color: var(--color-text-primary); background: var(--color-bg-secondary); }
+
+    .view { display: none; animation: fadeIn 0.4s ease forwards; }
+    .view.on { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* CARDS */
+    .card { background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1rem; backdrop-filter: blur(20px); box-shadow: var(--shadow-sm); transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover { transform: scale(1.02); border-color: rgba(255,255,255,0.3); box-shadow: 0 0 20px rgba(255,179,71,0.4); }
+
+    .two-col { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 1.25rem; margin-bottom: 0.5rem; }
+    @media (max-width: 500px) { .two-col { grid-template-columns: 1fr; } }
+
+    .sec-label { font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 1rem; letter-spacing: -0.01em; display: flex; align-items: center; }
+    .sec-sub { font-size: 12px; color: var(--color-text-secondary); font-weight: 400; margin-left: 8px; background: var(--color-bg-secondary); padding: 2px 8px; border-radius: var(--border-radius-full); }
+
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -0.5rem; padding: 0 0.5rem; }
+    table { width: 100%; min-width: max-content; border-collapse: separate; border-spacing: 0; font-size: 14px; }
+    th { text-align: left; padding: 10px 8px; font-size: 11px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--color-border); white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.2s; }
+    th:hover { color: var(--color-accent); }
+    th.sorted { color: var(--color-accent); }
+    th .sort-indicator { margin-left: 4px; opacity: 0.7; }
+    td { padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--color-text-primary); white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .pos { font-size: 13px; font-weight: 700; color: var(--color-text-secondary); text-align: center; background: var(--color-bg-secondary); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    .pos.p1 { color: #000; background: var(--color-rank-1); box-shadow: 0 0 20px rgba(255,179,71,0.4); }
+    .pos.p2 { color: #000; background: var(--color-rank-2); box-shadow: 0 0 8px rgba(224,224,224,0.3); }
+    .pos.p3 { color: #000; background: var(--color-rank-3); box-shadow: 0 0 8px rgba(205,127,50,0.3); }
+
+    .pname { font-weight: 500; font-size: 14px; }
+    .num { font-family: var(--font-mono); font-size: 14px; text-align: right; font-weight: 600; overflow: visible; text-overflow: clip; }
+
+    .match-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); transition: background 0.2s ease; }
+    .match-row:last-child { border-bottom: none; }
+    .match-row:hover { background: rgba(255,255,255,0.02); border-radius: var(--border-radius-md); padding-left: 8px; padding-right: 8px; margin-left: -8px; margin-right: -8px; }
+
+    .mnum { font-size: 12px; font-weight: 600; color: var(--color-accent); background: var(--color-accent-glow); padding: 3px 8px; border-radius: var(--border-radius-sm); flex-shrink: 0; font-family: var(--font-mono); }
+    .mteams { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+    .mmeta { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+
+    .badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: var(--border-radius-full); flex-shrink: 0; letter-spacing: 0.02em; text-transform: uppercase; }
+    .b-done { background: var(--color-success-bg); color: var(--color-success); border: 1px solid rgba(16,185,129,0.2); }
+    .b-pend { background: var(--color-pending-bg); color: var(--color-pending); border: 1px solid rgba(245,158,11,0.2); }
+
+    .btn { padding: 8px 16px; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid var(--color-border); border-radius: var(--border-radius-md); background: var(--color-bg-secondary); color: var(--color-text-primary); font-family: var(--font-sans); transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+    .btn:hover { background: var(--color-bg-secondary-hover); border-color: rgba(255,255,255,0.2); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-a { background: var(--color-accent); color: #111827; border-color: var(--color-accent); font-weight: 600; box-shadow: 0 4px 12px var(--color-accent-glow); }
+    .btn-a:hover { background: var(--color-accent-hover); color: #000; border-color: var(--color-accent-hover); box-shadow: 0 6px 16px var(--color-accent-glow); transform: translateY(-1px); }
+    .btn-sm { padding: 5px 12px; font-size: 13px; border-radius: var(--border-radius-sm); }
+
+    .back { background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); font-family: var(--font-sans); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1.5rem; padding: 6px 12px; border-radius: var(--border-radius-full); transition: all 0.2s ease; margin-left: -12px; }
+    .back:hover { color: var(--color-text-primary); background: var(--color-bg-secondary); }
+
+    .entry-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); margin-bottom: 8px; transition: border-color 0.2s; }
+    .entry-row:hover { border-color: rgba(255,255,255,0.1); }
+    .ep { flex: 1; font-weight: 500; font-size: 14px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .eig { display: flex; flex-direction: column; gap: 4px; }
+    .el { font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+
+    input[type=number], input[type=text] { width: 80px; font-family: var(--font-mono); background: var(--color-bg-card); border: 1px solid var(--color-border); color: var(--color-text-primary); border-radius: var(--border-radius-sm); padding: 8px 10px; font-size: 14px; transition: all 0.2s ease; outline: none; }
+    input[type=text] { width: 100%; font-family: var(--font-sans); }
+    input:focus { border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent-glow); background: rgba(0,0,0,0.3); }
+
+    .pl-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+    .pl-row:last-of-type { border-bottom: none; }
+    .pl-name { font-weight: 600; font-size: 15px; }
+    .pl-meta { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+
+    .add-row { display: flex; gap: 10px; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+    .add-row input { flex: 1; }
+    .del { background: none; border: none; cursor: pointer; color: var(--color-text-muted); font-size: 20px; line-height: 1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+    .del:hover { color: var(--color-danger); background: rgba(239,68,68,0.1); }
+
+    .empty { color: var(--color-text-muted); font-size: 15px; padding: 3rem 1rem; text-align: center; background: rgba(0,0,0,0.1); border-radius: var(--border-radius-md); border: 1px dashed var(--color-border); }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .hint { font-size: 13px; color: var(--color-text-muted); margin-top: 1rem; text-align: center; }
+
+    .loading-state { color: var(--color-text-muted); font-size: 15px; padding: 2rem 0; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .loading-state::after { content: ""; width: 16px; height: 16px; border: 2px solid var(--color-text-muted); border-right-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg-body); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+    .app-header { margin-bottom: 2rem; text-align: center; }
+    .app-title { font-size: 28px; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.02em; background: linear-gradient(135deg, #fff, #a1a1aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .app-subtitle { font-size: 14px; color: var(--color-accent); margin-top: 6px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* ─── ANALYTICS STYLES ─── */
+    .analytics-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); backdrop-filter: blur(12px); }
+    .control-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .control-label { font-size: 12px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .pill-group { display: flex; gap: 4px; }
+    .pill { padding: 5px 12px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border); border-radius: var(--border-radius-full); background: transparent; color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-sans); transition: all 0.2s; }
+    .pill.on { background: var(--color-accent); color: #111; border-color: var(--color-accent); box-shadow: 0 2px 8px var(--color-accent-glow); }
+    .pill:hover:not(.on) { background: var(--color-bg-secondary-hover); color: var(--color-text-primary); }
+
+    .player-toggle { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ptoggle { padding: 4px 10px; font-size: 12px; font-weight: 500; border-radius: var(--border-radius-full); border: 1px solid; cursor: pointer; font-family: var(--font-sans); transition: all 0.2s; opacity: 0.5; }
+    .ptoggle.on { opacity: 1; }
+
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    @media (max-width: 680px) { .charts-grid { grid-template-columns: 1fr; } }
+    .chart-full { grid-column: 1 / -1; }
+    .chart-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); padding: 1.25rem; backdrop-filter: blur(12px); }
+    .chart-title { font-size: 13px; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+    .chart-container { position: relative; height: 200px; }
+    .chart-container-tall { position: relative; height: 260px; }
+
+    /* UNIFIED ANALYTICS TABLE */
+    .analytics-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .analytics-table { width: 100%; min-width: 900px; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+    .analytics-table th { padding: 10px 10px; font-size: 10px; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 2px solid var(--color-border); white-space: nowrap; cursor: pointer; user-select: none; background: rgba(0,0,0,0.2); transition: color 0.2s; position: sticky; top: 0; z-index: 2; }
+    .analytics-table th:hover { color: var(--color-accent); }
+    .analytics-table th.sorted { color: var(--color-accent); }
+    .analytics-table td { padding: 11px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; transition: background 0.15s; }
+    .analytics-table tr:hover td { background: rgba(255,255,255,0.03); }
+    .analytics-table tr:last-child td { border-bottom: none; }
+    .analytics-table .mono { font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+    .analytics-table .player-cell { font-weight: 600; font-size: 13px; min-width: 90px; }
+    .analytics-table .best-green { background: var(--color-highlight-green) !important; color: var(--color-success) !important; border-radius: 4px; }
+    .analytics-table .best-gold { background: var(--color-highlight-gold) !important; color: var(--color-rank-1) !important; border-radius: 4px; }
+    .analytics-table .best-blue { background: var(--color-highlight-blue) !important; color: #60a5fa !important; border-radius: 4px; }
+
+    .trend-up { color: var(--color-success); font-weight: 700; font-size: 16px; }
+    .trend-down { color: var(--color-danger); font-weight: 700; font-size: 16px; }
+    .trend-flat { color: var(--color-text-muted); font-size: 16px; }
+
+    .award-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.25rem; }
+    .award-card { flex: 1; min-width: 140px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); padding: 1rem; backdrop-filter: blur(12px); text-align: center; }
+    .award-icon { font-size: 24px; margin-bottom: 6px; }
+    .award-label { font-size: 11px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .award-name { font-size: 14px; font-weight: 700; color: var(--color-text-primary); }
+    .award-val { font-size: 12px; color: var(--color-text-secondary); font-family: var(--font-mono); margin-top: 2px; }
+
+    .power-bar { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.08); margin-top: 4px; overflow: hidden; }
+    .power-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--color-accent), #ff6b6b); transition: width 0.5s ease; }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      #app { padding: 1rem 0.5rem; }
+      .app-title { font-size: 24px; }
+      .card { padding: 1rem; border-radius: 12px; }
+      .tab { padding: 8px 8px; font-size: 12px; }
+      .tabs { gap: 0.25rem; padding: 0.25rem; margin-bottom: 1.5rem; }
+      th { padding: 8px 4px; font-size: 10px; }
+      td { padding: 10px 4px; }
+      .pname { font-size: 13px; }
+      .num { font-size: 13px; }
+      .match-row { padding: 12px 0; gap: 8px; align-items: flex-start; }
+      .match-row > div:last-child { flex-direction: column; align-items: flex-end; gap: 6px; }
+      .mteams { font-size: 14px; }
+      .entry-row { padding: 12px; gap: 10px; flex-wrap: wrap; }
+      .ep { flex-basis: 100%; font-size: 15px; margin-bottom: 2px; }
+      .eig { flex: 1; }
+      input[type=number] { width: 100%; padding: 10px; }
+      input[type=text] { padding: 10px; }
+      .add-row { flex-wrap: wrap; }
+      .add-row .btn { width: 100%; padding: 12px; }
+      .btn { padding: 10px 16px; }
+      .analytics-controls { padding: 0.75rem; gap: 8px; }
+    }
+  </style>
+
+  <div id="app">
+    <div class="app-header">
+      <div class="app-title">Dream11 Tracker</div>
+      <div class="app-subtitle">IPL 2026 · Fantasy Leaderboard</div>
+    </div>
+    <nav class="tabs">
+      <button class="tab on" data-v="leaderboard">Leaderboard</button>
+      <button class="tab" data-v="matches">Matches</button>
+      <button class="tab" data-v="players">Players</button>
+      <button class="tab" data-v="analytics">Analytics</button>
+    </nav>
+    <div id="v-leaderboard" class="view on"><div class="loading-state">Loading…</div></div>
+    <div id="v-matches" class="view"></div>
+    <div id="v-players" class="view"></div>
+    <div id="v-entry" class="view"></div>
+    <div id="v-analytics" class="view"></div>
+  </div>
+
+  <script>
+  const BASE_MATCHES = [
+    { id: 35, t: 'DC vs PBKS', d: 'Apr 24, Thu', v: 'Dharamshala' },
+    { id: 36, t: 'RR vs SRH', d: 'Apr 25, Fri', v: 'Jaipur' },
+    { id: 37, t: 'CSK vs GT', d: 'Apr 26, Sat', v: 'Chennai' },
+    { id: 38, t: 'LSG vs KKR', d: 'Apr 26, Sun', v: 'Lucknow' },
+    { id: 39, t: 'DC vs RCB', d: 'Apr 27, Mon', v: 'Delhi' },
+    { id: 40, t: 'PBKS vs RR', d: 'Apr 28, Tue', v: 'New Chandigarh' },
+    { id: 41, t: 'MI vs SRH', d: 'Apr 29, Wed', v: 'Mumbai' },
+    { id: 42, t: 'GT vs RCB', d: 'Apr 30, Thu', v: 'Ahmedabad' },
+    { id: 43, t: 'RR vs DC', d: 'May 1, Fri', v: 'Jaipur' },
+    { id: 44, t: 'CSK vs MI', d: 'May 2, Sat', v: 'Chennai' },
+    { id: 45, t: 'SRH vs KKR', d: 'May 3, Sun', v: 'Hyderabad' },
+    { id: 46, t: 'GT vs PBKS', d: 'May 3, Sun', v: 'Ahmedabad' },
+    { id: 47, t: 'MI vs LSG', d: 'May 4, Mon', v: 'Mumbai' },
+    { id: 48, t: 'DC vs CSK', d: 'May 5, Tue', v: 'Delhi' },
+    { id: 49, t: 'SRH vs PBKS', d: 'May 6, Wed', v: 'Hyderabad' },
+    { id: 50, t: 'LSG vs RCB', d: 'May 7, Thu', v: 'Lucknow' },
+    { id: 51, t: 'DC vs KKR', d: 'May 8, Fri', v: 'Delhi' },
+    { id: 52, t: 'RR vs GT', d: 'May 9, Sat', v: 'Jaipur' },
+    { id: 53, t: 'CSK vs LSG', d: 'May 10, Sun', v: 'Chennai' },
+    { id: 54, t: 'RCB vs MI', d: 'May 10, Sun', v: 'Raipur' },
+    { id: 55, t: 'PBKS vs DC', d: 'May 11, Mon', v: 'Dharamshala' },
+    { id: 56, t: 'GT vs SRH', d: 'May 12, Tue', v: 'Ahmedabad' },
+    { id: 57, t: 'RCB vs KKR', d: 'May 13, Wed', v: 'Raipur' },
+    { id: 58, t: 'PBKS vs MI', d: 'May 14, Thu', v: 'Dharamshala' },
+    { id: 59, t: 'LSG vs CSK', d: 'May 15, Fri', v: 'Lucknow' },
+    { id: 60, t: 'KKR vs GT', d: 'May 16, Sat', v: 'Kolkata' },
+    { id: 61, t: 'PBKS vs RCB', d: 'May 17, Sun', v: 'Dharamshala' },
+    { id: 62, t: 'DC vs RR', d: 'May 17, Sun', v: 'Delhi' },
+    { id: 63, t: 'CSK vs SRH', d: 'May 18, Mon', v: 'Chennai' },
+    { id: 64, t: 'RR vs LSG', d: 'May 19, Tue', v: 'Jaipur' },
+    { id: 65, t: 'KKR vs MI', d: 'May 20, Wed', v: 'Kolkata' },
+    { id: 66, t: 'GT vs CSK', d: 'May 21, Thu', v: 'Ahmedabad' },
+    { id: 67, t: 'SRH vs RCB', d: 'May 22, Fri', v: 'Hyderabad' },
+    { id: 68, t: 'LSG vs PBKS', d: 'May 23, Sat', v: 'Lucknow' },
+    { id: 69, t: 'MI vs RR', d: 'May 24, Sun', v: 'Mumbai' },
+  ];
+
+  const SUPABASE_URL = 'https://hnrtifquaznamxcxkxum.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhucnRpZnF1YXpuYW14Y3hreHVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMTMyOTksImV4cCI6MjA5Mjc4OTI5OX0.IIxG8OCnpBOotByBXziLZSNOSEa7K35GOe1j1KYEMhQ';
+  let supabaseClient = null;
+
+  let S = { players: [], matches: [...BASE_MATCHES], entries: {}, view: 'leaderboard', sel: null };
+
+  // Analytics state
+  let A = {
+    filterN: 'all',
+    activePlayers: new Set(),
+    sortCol: 'weightedScore',
+    sortAsc: false,
+    charts: {}
+  };
+
+  // Player color palette
+  const PLAYER_COLORS = [
+    '#FFB347','#60a5fa','#34d399','#f472b6','#a78bfa',
+    '#fb923c','#38bdf8','#4ade80','#e879f9','#facc15',
+    '#f87171','#818cf8'
+  ];
+
+  function escH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  async function init() {
+    if (!supabaseClient && window.supabase) {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+    if (!supabaseClient || SUPABASE_URL.includes('YOUR_SUPABASE_URL')) { render(); return; }
+    try {
+      const [pRes, mRes, eRes] = await Promise.all([
+        supabaseClient.from('players').select('name').order('created_at', { ascending: true }),
+        supabaseClient.from('custom_matches').select('*'),
+        supabaseClient.from('entries').select('*')
+      ]);
+      if (pRes.data) S.players = pRes.data.map(p => p.name);
+      if (mRes.data && mRes.data.length) {
+        const extras = mRes.data.map(m => ({ id: m.id, t: m.teams, d: m.match_date, v: m.venue }));
+        S.matches = [...BASE_MATCHES, ...extras];
+      }
+      if (eRes.data) {
+        S.entries = {};
+        eRes.data.forEach(e => {
+          S.entries[eKey(e.match_id, e.player_name)] = { rank: e.rank, points: e.points };
+        });
+      }
+    } catch(e) { console.error("Supabase error:", e); }
+    A.activePlayers = new Set(S.players);
+    render();
+  }
+
+  function eKey(mid, player) { return mid + ':::' + player; }
+
+  function matchEntries(mid) {
+    const out = {};
+    const prefix = String(mid) + ':::';
+    for (const k in S.entries) {
+      if (k.startsWith(prefix)) out[k.slice(prefix.length)] = S.entries[k];
+    }
+    return out;
+  }
+
+  // ─── STATS COMPUTATION ───────────────────────────────────────────────────────
+  function stdDev(arr) {
+    if (!arr.length) return 0;
+    const mean = arr.reduce((a, b) => a + b, 0) / arr.length;
+    return Math.sqrt(arr.reduce((s, x) => s + (x - mean) ** 2, 0) / arr.length);
+  }
+
+  function computeStats(filterN = 'all') {
+    // Get ordered matches that have at least one entry
+    const playedMatches = S.matches.filter(m => {
+      const me = matchEntries(m.id);
+      return Object.keys(me).length > 0;
+    });
+
+    // Apply filter
+    const filteredMatches = filterN === 'all' ? playedMatches :
+      playedMatches.slice(-Number(filterN));
+
+    const stats = {};
+    for (const p of S.players) {
+      const ranks = [], points = [];
+      for (const m of filteredMatches) {
+        const k = eKey(m.id, p);
+        const e = S.entries[k];
+        if (e && (e.rank != null || e.points != null)) {
+          if (e.rank != null && e.rank !== '') ranks.push(Number(e.rank));
+          if (e.points != null && e.points !== '') points.push(Number(e.points));
+        }
+      }
+      const n = Math.max(ranks.length, points.length);
+      if (n === 0) { stats[p] = null; continue; }
+
+      const totalPoints = points.reduce((a,b) => a+b, 0);
+      const totalRank = ranks.reduce((a,b) => a+b, 0);
+      const avgPoints = points.length ? totalPoints / points.length : 0;
+      const avgRank = ranks.length ? totalRank / ranks.length : 0;
+      const bestRank = ranks.length ? Math.min(...ranks) : null;
+      const worstRank = ranks.length ? Math.max(...ranks) : null;
+      const maxPoints = points.length ? Math.max(...points) : null;
+      const minPoints = points.length ? Math.min(...points) : null;
+      const stdPoints = stdDev(points);
+      const stdRank = stdDev(ranks);
+      const wins = ranks.filter(r => r === 1).length;
+      const top3 = ranks.filter(r => r <= 3).length;
+      const last5pts = points.slice(-5);
+      const last5rnk = ranks.slice(-5);
+      const last5AvgPoints = last5pts.length ? last5pts.reduce((a,b)=>a+b,0)/last5pts.length : 0;
+      const last5AvgRank = last5rnk.length ? last5rnk.reduce((a,b)=>a+b,0)/last5rnk.length : 0;
+      const consistencyScore = stdPoints > 0 ? (1 / stdPoints) * 100 : 0;
+      const clutchScore = last5AvgPoints - avgPoints;
+      const dominance = wins / (n || 1);
+      const volatility = stdPoints / (avgPoints || 1);
+      const trendPts = last5pts.length >= 2
+        ? (last5AvgPoints > avgPoints ? 'up' : last5AvgPoints < avgPoints ? 'down' : 'flat')
+        : 'flat';
+      const powerScore = avgPoints > 0 && avgRank > 0
+        ? (avgPoints * 0.6) + ((1 / avgRank) * 100 * 0.4)
+        : 0;
+      const weightedScore = (0.5 * avgPoints) +
+        (0.3 * last5AvgPoints) +
+        (0.2 * (avgRank > 0 ? (1 / avgRank) * 100 : 0));
+      const momentum = last5AvgPoints - avgPoints;
+
+      const xp = (wins * 50) + (top3 * 20) + avgPoints;
+      const level = Math.floor(xp / 100);
+      let currentStreak = 0, bestStreak = 0;
+      for (let i = 0; i < ranks.length; i++) {
+        if (ranks[i] <= 3) {
+          currentStreak++;
+          bestStreak = Math.max(bestStreak, currentStreak);
+        } else currentStreak = 0;
+      }
+
+      // Per-match arrays for charts (ordered)
+      const matchPoints = [], matchRanks = [], matchLabels = [];
+      for (const m of filteredMatches) {
+        const k = eKey(m.id, p);
+        const e = S.entries[k];
+        matchPoints.push(e && e.points != null ? Number(e.points) : null);
+        matchRanks.push(e && e.rank != null ? Number(e.rank) : null);
+        matchLabels.push('M' + m.id);
+      }
+
+      stats[p] = {
+        n, totalPoints, totalRank, avgPoints, avgRank,
+        bestRank, worstRank, maxPoints, minPoints,
+        stdPoints, stdRank, wins, top3,
+        last5AvgPoints, last5AvgRank, trendPts, powerScore,
+        weightedScore, momentum,
+        consistencyScore, clutchScore, dominance, volatility,
+        xp, level, bestStreak,
+        matchPoints, matchRanks, matchLabels, ranks, points
+      };
+    }
+
+    // "Most Improved" = biggest (last5AvgPoints - overall avgPoints) with enough data
+    let mostImproved = null, bestImprovement = -Infinity;
+    for (const p in stats) {
+      const st = stats[p];
+      if (!st || st.n < 3) continue;
+      const imp = st.last5AvgPoints - st.avgPoints;
+      if (imp > bestImprovement) { bestImprovement = imp; mostImproved = p; }
+    }
+
+    return { stats, filteredMatches, mostImproved, bestImprovement };
+  }
+
+  function getBadges(s) {
+    const badges = [];
+    if (s.wins >= 3) badges.push('🏆');
+    if (s.avgPoints > 80) badges.push('🔥');
+    if (s.stdPoints < 10) badges.push('🎯');
+    if (s.clutchScore > 10) badges.push('⚡');
+    if (s.bestStreak >= 3) badges.push('🚀');
+    return badges.join(' ');
+  }
+
+  const challenges = [
+    { title: 'Score 100+', check: s => s.maxPoints >= 100 },
+    { title: 'Win 2 matches', check: s => s.wins >= 2 },
+    { title: 'Top 3 streak', check: s => s.bestStreak >= 3 }
+  ];
+
+  function weeklyMVP(stats) {
+    let best = null, max = -Infinity;
+    for (const p in stats) {
+      const s = stats[p];
+      if (!s) continue;
+      if (s.last5AvgPoints > max) {
+        max = s.last5AvgPoints;
+        best = p;
+      }
+    }
+    return best;
+  }
+
+  function rivalry(p1, p2) {
+    let w1 = 0, w2 = 0;
+    S.matches.forEach(m => {
+      const e1 = S.entries[eKey(m.id, p1)];
+      const e2 = S.entries[eKey(m.id, p2)];
+      if (e1 && e2 && e1.rank != null && e2.rank != null) {
+        if (e1.rank < e2.rank) w1++;
+        else if (e2.rank < e1.rank) w2++;
+      }
+    });
+    return { p1, p2, w1, w2 };
+  }
+
+  function renderHeatmap(stats) {
+    let html = `<div class="card"><div class="sec-label">Performance Heatmap</div>`;
+    for (const p of S.players) {
+      const s = stats[p];
+      if (!s) continue;
+      html += `<div style="margin-bottom:10px"><strong>${escH(p)}:</strong> `;
+      s.matchPoints.forEach(pt => {
+        let color = '#222';
+        if (pt > 100) color = '#10B981';
+        else if (pt > 60) color = '#F59E0B';
+        else if (pt !== null) color = '#EF4444';
+        html += `<span style="display:inline-block;width:12px;height:12px;margin:2px;background:${color}"></span>`;
+      });
+      html += `</div>`;
+    }
+    html += `</div>`;
+    return html;
+  }
+
+  // ─── LEADERBOARD ─────────────────────────────────────────────────────────────
+  function leaderboard() {
+    const data = {};
+    for (const p of S.players) data[p] = { rs: 0, ps: 0, n: 0 };
+    for (const k in S.entries) {
+      const sep = k.indexOf(':::');
+      if (sep < 0) continue;
+      const player = k.slice(sep + 3);
+      if (!data[player]) continue;
+      const { rank, points } = S.entries[k];
+      if (rank != null && rank !== '') { data[player].rs += Number(rank); data[player].n++; }
+      if (points != null && points !== '') data[player].ps += Number(points);
+    }
+    const byR = Object.entries(data).filter(([,v]) => v.n > 0).sort((a,b) => a[1].rs !== b[1].rs ? a[1].rs - b[1].rs : b[1].ps - a[1].ps);
+    const byP = Object.entries(data).filter(([,v]) => v.n > 0).sort((a,b) => b[1].ps - a[1].ps);
+    return { byR, byP, data };
+  }
+
+  // ─── RENDER ROUTER ───────────────────────────────────────────────────────────
+  function render() {
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.v === S.view));
+    ['leaderboard','matches','players','entry','analytics'].forEach(v => {
+      const el = document.getElementById('v-' + v);
+      if (el) el.classList.toggle('on', v === S.view);
+    });
+    if (S.view === 'leaderboard') rLB();
+    else if (S.view === 'matches') rMatches();
+    else if (S.view === 'players') rPlayers();
+    else if (S.view === 'entry') rEntry();
+    else if (S.view === 'analytics') rAnalytics();
+  }
+
+  // ─── LEADERBOARD VIEW ────────────────────────────────────────────────────────
+  function rLB() {
+    const el = document.getElementById('v-leaderboard');
+    if (!S.players.length) { el.innerHTML = `<div class="empty">Add players in the Players tab to get started.</div>`; return; }
+    const { byR, byP } = leaderboard();
+    const tbl = (rows, isRank) => {
+      if (!rows.length) return `<div style="font-size:13px;color:var(--color-text-secondary);padding:.5rem 0">Enter scores to see rankings</div>`;
+      return `<div class="table-wrap"><table><thead><tr>
+        <th style="width:28px">#</th><th>Player</th>
+        <th style="text-align:right;width:48px">${isRank?'Rank':'Pts'}</th>
+        ${isRank?'<th style="text-align:right;width:32px">M</th>':''}
+        <th style="text-align:right;width:${isRank?'68px':'96px'}">${isRank?'Avg R':'Avg P'}</th>
+      </tr></thead><tbody>` + rows.map(([name, d], i) => {
+        const pc = i===0?' p1':i===1?' p2':i===2?' p3':'';
+        const avg = d.n>0 ? (isRank?d.rs/d.n:d.ps/d.n).toFixed(2) : '-';
+        return `<tr>
+          <td><div class="pos${pc}">${i+1}</div></td>
+          <td class="pname" title="${escH(name)}">${escH(name)}</td>
+          <td class="num">${isRank?d.rs:d.ps}</td>
+          ${isRank?`<td class="num" style="color:var(--color-text-secondary)">${d.n}</td>`:''}
+          <td class="num">${avg}</td>
+        </tr>`;
+      }).join('') + '</tbody></table></div>';
+    };
+    el.innerHTML = `<div class="two-col">
+      <div class="card"><div class="sec-label">By rank <span class="sec-sub">lowest wins</span></div>${tbl(byR,true)}</div>
+      <div class="card"><div class="sec-label">By points <span class="sec-sub">highest wins</span></div>${tbl(byP,false)}</div>
+    </div><div class="hint">M = matches with scores entered</div>`;
+  }
+
+  // ─── MATCHES VIEW ────────────────────────────────────────────────────────────
+  function rMatches() {
+    const el = document.getElementById('v-matches');
+    let html = `<div class="top-bar">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${S.matches.length} matches</span>
+      <button class="btn btn-sm" onclick="addMatch()">+ Add match</button>
+    </div><div class="card" style="padding:.5rem 1.25rem">`;
+    for (const m of S.matches) {
+      const me = matchEntries(m.id);
+      const cnt = Object.keys(me).length;
+      html += `<div class="match-row">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span class="mnum">M${m.id}</span>
+            <span class="mteams">${escH(m.t)}</span>
+          </div>
+          <div class="mmeta">${escH(m.d)} · ${escH(m.v)}${cnt?` · <span style="color:var(--color-success);font-weight:600">${cnt} entr${cnt===1?'y':'ies'}</span>`:''}</div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0;margin-left:8px">
+          <span class="badge ${cnt?'b-done':'b-pend'}">${cnt?'Done':'Pending'}</span>
+          <button class="btn btn-sm" onclick="openEntry(${m.id})">${cnt?'Edit':'Enter'}</button>
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+    el.innerHTML = html;
+  }
+
+  async function addMatch() {
+    const t = prompt('Teams (e.g. CSK vs MI):');
+    if (!t || !t.trim()) return;
+    const d = prompt('Date (e.g. May 25, Sun):') || '';
+    const v = prompt('Venue (e.g. Chennai):') || '';
+    const nid = Math.max(...S.matches.map(m => m.id)) + 1;
+    const newMatch = { id: nid, t: t.trim(), d: d.trim(), v: v.trim() };
+    S.matches.push(newMatch);
+    rMatches();
+    if (supabaseClient && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+      const { error } = await supabaseClient.from('custom_matches').insert([{ id: newMatch.id, teams: newMatch.t, match_date: newMatch.d, venue: newMatch.v }]);
+      if (error) alert("Could not save match: " + error.message);
+    }
+  }
+
+  function openEntry(mid) { S.sel = mid; S.view = 'entry'; render(); }
+
+  function rEntry() {
+    const el = document.getElementById('v-entry');
+    const m = S.matches.find(x => x.id === S.sel);
+    if (!m) { el.innerHTML = ''; return; }
+    if (!S.players.length) {
+      el.innerHTML = `<button class="back" onclick="goBack()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>Back</button>
+        <div class="empty">Add players first in the Players tab.</div>`; return;
+    }
+    const me = matchEntries(m.id);
+    const rows = S.players.map((p, i) => {
+      const e = me[p] || {};
+      return `<div class="entry-row">
+        <div class="ep">${escH(p)}</div>
+        <div class="eig"><div class="el">Rank</div><input type="number" min="1" id="er_${i}" value="${e.rank!=null?e.rank:''}"></div>
+        <div class="eig"><div class="el">Points</div><input type="number" min="0" id="ep_${i}" value="${e.points!=null?e.points:''}"></div>
+      </div>`;
+    }).join('');
+    el.innerHTML = `<button class="back" onclick="goBack()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>Back to matches</button>
+      <div class="card" style="margin-bottom:1.5rem">
+        <div style="font-size:12px;font-weight:600;color:var(--color-accent);text-transform:uppercase;letter-spacing:0.05em">Match ${m.id}</div>
+        <div style="font-size:20px;font-weight:600;margin:6px 0;letter-spacing:-0.01em">${escH(m.t)}</div>
+        <div style="font-size:13px;color:var(--color-text-secondary)">${escH(m.d)} · ${escH(m.v)}</div>
+      </div>
+      ${rows}
+      <div style="display:flex;gap:8px;margin-top:1rem">
+        <button class="btn btn-a" onclick="saveEntry()">Save scores</button>
+        <button class="btn" onclick="goBack()">Cancel</button>
+      </div>`;
+  }
+
+  async function saveEntry() {
+    const m = S.matches.find(x => x.id === S.sel);
+    if (!m) return;
+    const upserts = [], deletes = [];
+    S.players.forEach((p, i) => {
+      const rEl = document.getElementById('er_' + i);
+      const pEl = document.getElementById('ep_' + i);
+      const rank = rEl ? rEl.value.trim() : '';
+      const pts = pEl ? pEl.value.trim() : '';
+      const k = eKey(m.id, p);
+      if (rank !== '' || pts !== '') {
+        const rVal = rank === '' ? null : Number(rank);
+        const pVal = pts === '' ? null : Number(pts);
+        S.entries[k] = { rank: rVal, points: pVal };
+        upserts.push({ match_id: m.id, player_name: p, rank: rVal, points: pVal });
+      } else {
+        delete S.entries[k];
+        deletes.push(p);
+      }
+    });
+    goBack();
+    if (supabaseClient && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+      let hasError = false;
+      if (upserts.length > 0) {
+        const { error } = await supabaseClient.from('entries').upsert(upserts);
+        if (error) { hasError = true; alert("Could not save scores: " + error.message); }
+      }
+      if (!hasError) {
+        for (const p of deletes) await supabaseClient.from('entries').delete().match({ match_id: m.id, player_name: p });
+      }
+    }
+  }
+
+  function goBack() { S.sel = null; S.view = 'matches'; render(); }
+
+  // ─── PLAYERS VIEW ────────────────────────────────────────────────────────────
+  function rPlayers() {
+    const el = document.getElementById('v-players');
+    const { data } = leaderboard();
+    let rows = '';
+    if (S.players.length) {
+      rows = S.players.map((p, i) => {
+        const d = data[p] || { n: 0, rs: 0, ps: 0 };
+        const meta = d.n ? `${d.n} match${d.n!==1?'es':''} · rank sum: ${d.rs} · pts: ${d.ps}` : `No scores yet`;
+        return `<div class="pl-row">
+          <div><div class="pl-name">${escH(p)}</div><div class="pl-meta">${meta}</div></div>
+          <button class="del" onclick="delPlayer(${i})" title="Remove">×</button>
+        </div>`;
+      }).join('');
+    } else {
+      rows = `<div class="empty">No players yet. Add your first player below.</div>`;
+    }
+    el.innerHTML = `<div class="card">
+      <div class="sec-label">Players (${S.players.length})</div>
+      ${rows}
+      <div class="add-row">
+        <input type="text" id="npi" placeholder="Enter player name" onkeydown="if(event.key==='Enter')addPlayer()">
+        <button class="btn btn-a" onclick="addPlayer()">Add</button>
+      </div>
+    </div>`;
+  }
+
+  async function addPlayer() {
+    const inp = document.getElementById('npi');
+    const name = inp ? inp.value.trim() : '';
+    if (!name) return;
+    if (S.players.includes(name)) { alert('Player already exists!'); return; }
+    S.players.push(name);
+    A.activePlayers.add(name);
+    inp.value = '';
+    rPlayers();
+    if (supabaseClient && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+      const { error } = await supabaseClient.from('players').insert([{ name }]);
+      if (error) alert("Could not save player: " + error.message);
+    }
+  }
+
+  async function delPlayer(i) {
+    const name = S.players[i];
+    if (!confirm(`Remove "${name}"? Their scores will also be deleted.`)) return;
+    S.players.splice(i, 1);
+    A.activePlayers.delete(name);
+    const sep = ':::';
+    for (const k of Object.keys(S.entries)) {
+      const idx = k.indexOf(sep);
+      if (idx >= 0 && k.slice(idx+3) === name) delete S.entries[k];
+    }
+    rPlayers();
+    if (supabaseClient && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+      const { error } = await supabaseClient.from('players').delete().eq('name', name);
+      if (error) alert("Could not delete player: " + error.message);
+    }
+  }
+
+  // ─── ANALYTICS VIEW ──────────────────────────────────────────────────────────
+  function rAnalytics() {
+    const el = document.getElementById('v-analytics');
+    if (!S.players.length) {
+      el.innerHTML = `<div class="empty">Add players in the Players tab to see analytics.</div>`;
+      return;
+    }
+    const { stats, filteredMatches, mostImproved, bestImprovement } = computeStats(A.filterN);
+    const hasData = Object.values(stats).some(s => s !== null);
+    if (!hasData) {
+      el.innerHTML = `<div class="empty">Enter match scores to see analytics.</div>`;
+      return;
+    }
+
+    // Compute best values for highlighting
+    const statValues = Object.entries(stats).filter(([,s]) => s !== null).map(([name, s]) => ({ name, ...s }));
+    const bestAvgPts = statValues.length ? Math.max(...statValues.map(s => s.avgPoints)) : null;
+    const bestAvgRnk = statValues.length ? Math.min(...statValues.filter(s => s.avgRank > 0).map(s => s.avgRank)) : null;
+    const bestConsistency = statValues.length ? Math.min(...statValues.map(s => s.stdPoints)) : null;
+    const bestPower = statValues.length ? Math.max(...statValues.map(s => s.powerScore)) : null;
+    const bestWeightedScore = statValues.length ? Math.max(...statValues.map(s => s.weightedScore)) : null;
+    const topWins = statValues.length ? Math.max(...statValues.map(s => s.wins)) : null;
+    const topTop3 = statValues.length ? Math.max(...statValues.map(s => s.top3)) : null;
+    const weeklyMvpName = weeklyMVP(stats);
+
+    // Awards
+    let mvpName = '', mvpPow = 0;
+    statValues.forEach(s => { if (s.powerScore > mvpPow) { mvpPow = s.powerScore; mvpName = s.name; } });
+    let bestConsPlayer = '', bestConsVal = Infinity;
+    statValues.forEach(s => { if (s.stdPoints < bestConsVal) { bestConsVal = s.stdPoints; bestConsPlayer = s.name; } });
+    let topWinPlayer = '', topWinVal = 0;
+    statValues.forEach(s => { if (s.wins > topWinVal) { topWinVal = s.wins; topWinPlayer = s.name; } });
+    const weightedLeader = statValues.find(s => s.weightedScore === bestWeightedScore);
+    const challengePlayer = statValues.find(s => s.name === mvpName) || statValues[0];
+    const challengeHtml = challengePlayer
+      ? `<div class="card"><div class="sec-label">${escH(challengePlayer.name)} Challenges</div>${challenges.map(c => `<div>${escH(c.title)}: ${c.check(challengePlayer) ? '✅' : '❌'}</div>`).join('')}</div>`
+      : '';
+    const sortedByWeighted = statValues.slice().sort((a, b) => b.weightedScore - a.weightedScore);
+    const r = sortedByWeighted.length >= 2 ? rivalry(sortedByWeighted[0].name, sortedByWeighted[1].name) : null;
+    const rivalryHtml = r
+      ? `<div class="card"><div class="sec-label">Rivalry</div><div>${escH(r.p1)} vs ${escH(r.p2)}</div><div style="margin-top:8px;font-weight:700">${r.w1} - ${r.w2}</div></div>`
+      : '';
+    const insights = [];
+    statValues.forEach(s => {
+      if (s.avgRank === bestAvgRnk) insights.push(`${s.name} is dominating`);
+      if (s.stdPoints === bestConsistency) insights.push(`${s.name} is most consistent`);
+      if (s.clutchScore > 15) insights.push(`${s.name} is clutch`);
+      if (s.momentum > 15) insights.push(`${s.name} is hot right now`);
+      if (s.momentum < -10) insights.push(`${s.name} is cooling off`);
+    });
+    const insightsHtml = insights.length
+      ? `<div class="card"><div class="sec-label">AI Insights</div>${insights.map(i => `<div>${escH(i)}</div>`).join('')}</div>`
+      : '';
+    const heatmapHtml = renderHeatmap(stats);
+
+    // Player color map
+    const colorMap = {};
+    S.players.forEach((p, i) => colorMap[p] = PLAYER_COLORS[i % PLAYER_COLORS.length]);
+
+    // Sort analytics table
+    let tableRows = statValues.filter(s => A.activePlayers.has(s.name));
+    tableRows.sort((a, b) => {
+      let av = a[A.sortCol] ?? -Infinity;
+      let bv = b[A.sortCol] ?? -Infinity;
+      return A.sortAsc ? av - bv : bv - av;
+    });
+
+    // Build player toggles HTML
+    const togglesHtml = S.players.map(p => {
+      const col = colorMap[p];
+      const isOn = A.activePlayers.has(p);
+      return `<button class="ptoggle ${isOn?'on':''}" style="color:${col};border-color:${col};background:${isOn?col+'22':'transparent'}" onclick="togglePlayer('${escH(p)}')">${escH(p)}</button>`;
+    }).join('');
+
+    // Build sortable header helper
+    const sh = (col, label, title='') => {
+      const isSorted = A.sortCol === col;
+      const arrow = isSorted ? (A.sortAsc ? '↑' : '↓') : '';
+      return `<th class="${isSorted?'sorted':''}" onclick="sortAnalytics('${col}')" title="${title}">${label}<span class="sort-indicator">${arrow}</span></th>`;
+    };
+
+    // Awards row
+    const awardsHtml = `<div class="award-row">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div class="award-label">Power Ranking</div>
+        <div class="award-name">${escH(mvpName||'–')}</div>
+        <div class="award-val">${mvpPow.toFixed(1)} pts</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🎯</div>
+        <div class="award-label">Most Consistent</div>
+        <div class="award-name">${escH(bestConsPlayer||'–')}</div>
+        <div class="award-val">σ ${bestConsVal===Infinity?'–':bestConsVal.toFixed(1)}</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🧠</div>
+        <div class="award-label">Weighted Prediction</div>
+        <div class="award-name">${escH(weightedLeader?.name||'–')}</div>
+        <div class="award-val">${bestWeightedScore?.toFixed(1) ?? '–'}</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏅</div>
+        <div class="award-label">Weekly MVP</div>
+        <div class="award-name">${escH(weeklyMvpName||'–')}</div>
+        <div class="award-val">${weeklyMvpName ? 'last 5 avg' : '–'}</div>
+      </div>
+      ${mostImproved ? `<div class="award-card">
+        <div class="award-icon">📈</div>
+        <div class="award-label">Most Improved</div>
+        <div class="award-name">${escH(mostImproved)}</div>
+        <div class="award-val">+${bestImprovement.toFixed(1)} avg pts</div>
+      </div>` : ''}
+    </div>`;
+
+    // Table rows
+    const tableHtml = tableRows.map(s => {
+      const col = colorMap[s.name];
+      const trendHtml = s.trendPts === 'up'
+        ? `<span class="trend-up">↑</span>`
+        : s.trendPts === 'down'
+          ? `<span class="trend-down">↓</span>`
+          : `<span class="trend-flat">–</span>`;
+
+      const maxP = bestPower > 0 ? (s.powerScore / bestPower * 100).toFixed(0) : 0;
+
+      const isGreen = s.avgPoints === bestAvgPts;
+      const isGold = s.avgRank === bestAvgRnk && s.avgRank > 0;
+      const isBlue = s.stdPoints === bestConsistency;
+
+      const momentumLabel = s.momentum > 15 ? '🔥 HOT' : s.momentum < -10 ? '🧊 COLD' : '';
+      return `<tr>
+        <td><div style="width:10px;height:10px;border-radius:50%;background:${col};display:inline-block;margin-right:6px"></div><span class="player-cell">${escH(s.name)}${momentumLabel ? `<span style="font-size:11px;color:var(--color-text-secondary);margin-left:6px">${momentumLabel}</span>` : ''}</span></td>
+        <td>${getBadges(s)}</td>
+        <td class="mono" style="text-align:right">${s.n}</td>
+        <td class="mono" style="text-align:right">${s.totalPoints}</td>
+        <td class="mono" style="text-align:right">${s.totalRank||'–'}</td>
+        <td class="mono ${isGreen?'best-green':''}" style="text-align:right">${s.avgPoints.toFixed(1)}</td>
+        <td class="mono ${isGold?'best-gold':''}" style="text-align:right">${s.avgRank?s.avgRank.toFixed(2):'–'}</td>
+        <td class="mono" style="text-align:right;color:var(--color-success)">${s.bestRank??'–'}</td>
+        <td class="mono" style="text-align:right;color:var(--color-danger)">${s.worstRank??'–'}</td>
+        <td class="mono" style="text-align:right">${s.maxPoints??'–'}</td>
+        <td class="mono" style="text-align:right">${s.minPoints??'–'}</td>
+        <td class="mono ${isBlue?'best-blue':''}" style="text-align:right">${s.stdPoints.toFixed(1)}</td>
+        <td class="mono" style="text-align:right">${s.stdRank.toFixed(1)}</td>
+        <td class="mono" style="text-align:right;color:var(--color-rank-1)">${s.wins}</td>
+        <td class="mono" style="text-align:right">${s.top3}</td>
+        <td class="mono" style="text-align:right">${s.consistencyScore.toFixed(1)}</td>
+        <td class="mono" style="text-align:right">${s.clutchScore.toFixed(1)}</td>
+        <td class="mono" style="text-align:right">${(s.dominance*100).toFixed(0)}%</td>
+        <td class="mono" style="text-align:right">${s.volatility.toFixed(2)}</td>
+        <td class="mono" style="text-align:right">${Math.round(s.xp)}</td>
+        <td class="mono" style="text-align:right">${s.level}</td>
+        <td class="mono" style="text-align:right">${s.bestStreak}</td>
+        <td class="mono" style="text-align:right">${s.last5AvgPoints.toFixed(1)}</td>
+        <td class="mono" style="text-align:right">${s.last5AvgRank.toFixed(2)}</td>
+        <td style="text-align:center">${trendHtml}</td>
+        <td>
+          <div title="XP: ${s.xp}, Level: ${s.level}" style="display:flex;align-items:center;gap:6px;min-width:100px">
+            <span class="mono" style="font-size:12px">${s.powerScore.toFixed(1)}</span>
+            <div class="power-bar"><div class="power-fill" style="width:${(s.level/10)*100}%"></div></div>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    el.innerHTML = `
+      <div class="analytics-controls">
+        <div class="control-group">
+          <span class="control-label">Filter</span>
+          <div class="pill-group">
+            <button class="pill ${A.filterN==='5'?'on':''}" onclick="setFilter('5')">Last 5</button>
+            <button class="pill ${A.filterN==='10'?'on':''}" onclick="setFilter('10')">Last 10</button>
+            <button class="pill ${A.filterN==='all'?'on':''}" onclick="setFilter('all')">All</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Players</span>
+          <div class="player-toggle">${togglesHtml}</div>
+        </div>
+      </div>
+
+      ${awardsHtml}
+      ${challengeHtml}
+      ${rivalryHtml}
+      ${insightsHtml}
+      ${heatmapHtml}
+
+      <div class="charts-grid">
+        <div class="chart-card chart-full">
+          <div class="chart-title">📈 Points Over Matches</div>
+          <div class="chart-container-tall"><canvas id="chart-pts"></canvas></div>
+        </div>
+        <div class="chart-card chart-full">
+          <div class="chart-title">📉 Rank Trend (lower = better)</div>
+          <div class="chart-container-tall"><canvas id="chart-rnk"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">📊 Avg Points per Player</div>
+          <div class="chart-container"><canvas id="chart-avgpts"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">📊 Avg Rank per Player</div>
+          <div class="chart-container"><canvas id="chart-avgrnk"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">⚡ Power Score Chart</div>
+          <div class="chart-container"><canvas id="chart-power"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">🏅 XP Chart</div>
+          <div class="chart-container"><canvas id="chart-xp"></canvas></div>
+        </div>
+        <div class="chart-card chart-full">
+          <div class="chart-title">🥇 Wins Chart</div>
+          <div class="chart-container"><canvas id="chart-wins"></canvas></div>
+        </div>
+        <div class="chart-card chart-full">
+          <div class="chart-title">🟢 Consistency — Std Deviation of Points (lower = more consistent)</div>
+          <div class="chart-container"><canvas id="chart-cons"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 0 0.5rem 0.5rem">
+        <div style="padding:1.25rem 1rem 0.75rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div class="sec-label" style="margin:0">Unified Analytics Table</div>
+          <span class="sec-sub">click headers to sort</span>
+          <span class="sec-sub" style="margin-left:auto">🟩 best avg pts &nbsp; 🟨 best avg rank &nbsp; 🟦 most consistent</span>
+        </div>
+        <div class="analytics-table-wrap">
+          <table class="analytics-table">
+            <thead><tr>
+              ${sh('name','Player')}
+              <th>Badges</th>
+              ${sh('n','M','Matches played')}
+              ${sh('totalPoints','Pts Σ','Total points')}
+              ${sh('totalRank','Rnk Σ','Total rank sum')}
+              ${sh('avgPoints','Avg Pts','Average points per match')}
+              ${sh('avgRank','Avg Rnk','Average rank per match')}
+              ${sh('bestRank','Best R','Best (lowest) rank')}
+              ${sh('worstRank','Worst R','Worst (highest) rank')}
+              ${sh('maxPoints','Max P','Highest points')}
+              ${sh('minPoints','Min P','Lowest points')}
+              ${sh('stdPoints','σ Pts','Std deviation of points')}
+              ${sh('stdRank','σ Rnk','Std deviation of rank')}
+              ${sh('wins','Wins','Rank = 1 count')}
+              ${sh('top3','Top3','Top 3 finish count')}
+              ${sh('consistencyScore','Consistency')}
+              ${sh('clutchScore','Clutch')}
+              ${sh('dominance','Win %')}
+              ${sh('volatility','Volatility')}
+              ${sh('xp','XP')}
+              ${sh('level','Level')}
+              ${sh('bestStreak','Streak')}
+              ${sh('last5AvgPoints','L5 Pts','Last 5 matches avg points')}
+              ${sh('last5AvgRank','L5 Rnk','Last 5 matches avg rank')}
+              <th title="Trend: last 5 vs overall">Trend</th>
+              ${sh('powerScore','⚡ Power','Power score = avgPts×0.6 + (1/avgRnk)×100×0.4')}
+            </tr></thead>
+            <tbody>${tableHtml}</tbody>
+          </table>
+        </div>
+      </div>`;
+
+    // Draw charts after DOM is ready
+    requestAnimationFrame(() => renderCharts(stats, filteredMatches, colorMap));
+  }
+
+  // ─── CHART RENDERING ─────────────────────────────────────────────────────────
+  function renderCharts(stats, filteredMatches, colorMap) {
+    const chartDefaults = {
+      plugins: { legend: { labels: { color: '#9CA3AF', font: { family: 'Outfit', size: 12 }, boxWidth: 12 } }, tooltip: { backgroundColor: 'rgba(15,18,25,0.95)', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, titleColor: '#fff', bodyColor: '#9CA3AF', titleFont: { family: 'Outfit', weight: '600' }, bodyFont: { family: 'JetBrains Mono' }, padding: 10, cornerRadius: 8 } },
+      animation: { duration: 600, easing: 'easeInOutQuart' }
+    };
+    const gridColor = 'rgba(255,255,255,0.06)';
+    const tickColor = '#6B7280';
+
+    const activeNames = S.players.filter(p => A.activePlayers.has(p) && stats[p] !== null);
+
+    // Match labels
+    const labels = filteredMatches.map(m => 'M' + m.id);
+
+    function destroyChart(id) {
+      if (A.charts[id]) { A.charts[id].destroy(); delete A.charts[id]; }
+    }
+
+    // Points line chart
+    destroyChart('pts');
+    const cPts = document.getElementById('chart-pts');
+    if (cPts) {
+      A.charts['pts'] = new Chart(cPts, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: activeNames.map(p => ({
+            label: p,
+            data: stats[p].matchPoints,
+            borderColor: colorMap[p],
+            backgroundColor: colorMap[p] + '22',
+            tension: 0.4,
+            fill: false,
+            borderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            spanGaps: true
+          }))
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Rank trend chart (inverted Y)
+    destroyChart('rnk');
+    const cRnk = document.getElementById('chart-rnk');
+    if (cRnk) {
+      const maxRank = Math.max(...activeNames.flatMap(p => stats[p].matchRanks.filter(r => r !== null)), 1);
+      A.charts['rnk'] = new Chart(cRnk, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: activeNames.map(p => ({
+            label: p,
+            data: stats[p].matchRanks,
+            borderColor: colorMap[p],
+            backgroundColor: colorMap[p] + '22',
+            tension: 0.4,
+            fill: false,
+            borderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            spanGaps: true
+          }))
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor } },
+            y: {
+              reverse: true,
+              min: 1,
+              max: maxRank + 1,
+              ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 }, stepSize: 1 },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+    }
+
+    // Avg Points bar
+    destroyChart('avgpts');
+    const cAvgPts = document.getElementById('chart-avgpts');
+    if (cAvgPts) {
+      A.charts['avgpts'] = new Chart(cAvgPts, {
+        type: 'bar',
+        data: {
+          labels: activeNames,
+          datasets: [{ label: 'Avg Points', data: activeNames.map(p => parseFloat(stats[p].avgPoints.toFixed(1))), backgroundColor: activeNames.map(p => colorMap[p] + 'cc'), borderColor: activeNames.map(p => colorMap[p]), borderWidth: 1, borderRadius: 6 }]
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          plugins: { ...chartDefaults.plugins, legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'Outfit', size: 11 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Avg Rank bar (lower=better, so sort ascending visually)
+    destroyChart('avgrnk');
+    const cAvgRnk = document.getElementById('chart-avgrnk');
+    if (cAvgRnk) {
+      A.charts['avgrnk'] = new Chart(cAvgRnk, {
+        type: 'bar',
+        data: {
+          labels: activeNames,
+          datasets: [{ label: 'Avg Rank', data: activeNames.map(p => stats[p].avgRank ? parseFloat(stats[p].avgRank.toFixed(2)) : 0), backgroundColor: activeNames.map(p => colorMap[p] + 'cc'), borderColor: activeNames.map(p => colorMap[p]), borderWidth: 1, borderRadius: 6 }]
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          plugins: { ...chartDefaults.plugins, legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'Outfit', size: 11 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Power score chart
+    destroyChart('power');
+    const cPower = document.getElementById('chart-power');
+    if (cPower) {
+      A.charts['power'] = new Chart(cPower, {
+        type: 'bar',
+        data: {
+          labels: activeNames,
+          datasets: [{ label: 'Weighted Score', data: activeNames.map(p => parseFloat(stats[p].weightedScore.toFixed(1))), backgroundColor: activeNames.map(p => colorMap[p] + 'cc'), borderColor: activeNames.map(p => colorMap[p]), borderWidth: 1, borderRadius: 6 }]
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          plugins: { ...chartDefaults.plugins, legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'Outfit', size: 11 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // XP chart
+    destroyChart('xp');
+    const cXp = document.getElementById('chart-xp');
+    if (cXp) {
+      A.charts['xp'] = new Chart(cXp, {
+        type: 'bar',
+        data: {
+          labels: activeNames,
+          datasets: [{ label: 'XP', data: activeNames.map(p => Math.round(stats[p].xp)), backgroundColor: activeNames.map(p => colorMap[p] + 'cc'), borderColor: activeNames.map(p => colorMap[p]), borderWidth: 1, borderRadius: 6 }]
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          plugins: { ...chartDefaults.plugins, legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'Outfit', size: 11 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Wins chart
+    destroyChart('wins');
+    const cWins = document.getElementById('chart-wins');
+    if (cWins) {
+      A.charts['wins'] = new Chart(cWins, {
+        type: 'bar',
+        data: {
+          labels: activeNames,
+          datasets: [{ label: 'Wins', data: activeNames.map(p => stats[p].wins), backgroundColor: activeNames.map(p => colorMap[p] + 'cc'), borderColor: activeNames.map(p => colorMap[p]), borderWidth: 1, borderRadius: 6 }]
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          plugins: { ...chartDefaults.plugins, legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'Outfit', size: 11 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Consistency chart
+    destroyChart('cons');
+    const cCons = document.getElementById('chart-cons');
+    if (cCons) {
+      A.charts['cons'] = new Chart(cCons, {
+        type: 'bar',
+        data: {
+          labels: activeNames,
+          datasets: [{ label: 'σ Points', data: activeNames.map(p => parseFloat(stats[p].stdPoints.toFixed(1))), backgroundColor: activeNames.map(p => colorMap[p] + 'cc'), borderColor: activeNames.map(p => colorMap[p]), borderWidth: 1, borderRadius: 6 }]
+        },
+        options: {
+          ...chartDefaults,
+          responsive: true, maintainAspectRatio: false,
+          plugins: { ...chartDefaults.plugins, legend: { display: false } },
+          scales: {
+            x: { ticks: { color: tickColor, font: { family: 'Outfit', size: 11 } }, grid: { display: false } },
+            y: { ticks: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+    }
+  }
+
+  // ─── ANALYTICS CONTROLS ──────────────────────────────────────────────────────
+  function setFilter(val) { A.filterN = val; rAnalytics(); }
+  function togglePlayer(name) {
+    if (A.activePlayers.has(name)) {
+      if (A.activePlayers.size > 1) A.activePlayers.delete(name);
+    } else {
+      A.activePlayers.add(name);
+    }
+    rAnalytics();
+  }
+  function sortAnalytics(col) {
+    if (A.sortCol === col) A.sortAsc = !A.sortAsc;
+    else { A.sortCol = col; A.sortAsc = false; }
+    rAnalytics();
+  }
+
+  // ─── EVENT LISTENERS ─────────────────────────────────────────────────────────
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      S.view = t.dataset.v;
+      if (S.view === 'analytics') A.activePlayers = new Set(S.players);
+      render();
+    });
+  });
+
+  init();
+  </script>
+
+</body>
+</html>
